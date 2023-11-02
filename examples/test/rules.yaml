@@ -1,0 +1,11 @@
+rules:
+  - name: test001
+    priority: 1001
+    protocol: Udp
+  - name: test002
+    priority: 1002
+    protocol: Tcp
+  - name: test003
+    priority: 1003
+    protocol: Tcp
+    source_port_range: ["22", "443"]

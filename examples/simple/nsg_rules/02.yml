@@ -1,0 +1,9 @@
+- name: Test301
+  direction: Outbound
+  priority: 2301
+  access: Allow
+  protocol: Tcp
+  source_port_ranges: "*"
+  destination_port_ranges: "*"
+  source_address_prefixes: "*"
+  destination_address_prefixes: "*"

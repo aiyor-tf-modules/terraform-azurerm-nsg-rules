@@ -1,0 +1,5 @@
+name,priority,direction,access,protocol,source_port_ranges,destination_port_ranges,source_address_prefixes,destination_address_prefixes,source_application_security_group_ids,destination_application_security_group_ids,description
+Csv101,2210,inbound,allow,tcp,,80,"103.63.157.120,192.168.0.0/16",,,,
+Csv103,1230,inbound,allow,tcp,"*",,"103.63.157.120,192.168.0.0/16",,,,
+Csv104,1240,inbound,allow,tcp,"80,443,22","443",,,,,
+Csv105,1250,inbound,allow,tcp,"80,443,22","443",,,/subscriptions/11111111-acb3-49d9-0000-cb82b5a5551d/resourceGroups/rg/providers/Microsoft.Network/applicationSecurityGroups/asg02,/subscriptions/11111111-acb3-49d9-0000-cb82b5a5551d/resourceGroups/rg/providers/Microsoft.Network/applicationSecurityGroups/asg01,

@@ -1,0 +1,51 @@
+- name: test101
+  direction: Inbound
+  access: Allow
+  priority: 1101
+  protocol: Tcp
+  source_port_ranges: "*"
+  destination_port_ranges: "*"
+  source_address_prefixes:
+    - 10.0.0.0/8
+    - 192.168.0.0/24
+  destination_application_security_group_ids:
+    - /subscriptions/11111111-acb3-49d9-0000-cb82b5a5551d/resourceGroups/rg/providers/Microsoft.Network/applicationSecurityGroups/asg01
+- name: Test201
+  direction: Outbound
+  access: Allow
+  priority: 2102
+  protocol: Tcp
+  source_address_prefixes: "192.168.0.12"
+  destination_service_tag: Internet
+  source_port_ranges: ["22", "44"]
+- name: Test103 # ok
+  direction: Inbound
+  priority: 2103
+  protocol: Tcp
+  access: Allow
+  source_port_ranges:
+    - "22"
+    - "443"
+  destination_port_ranges:
+    - "443"
+    - "1443"
+- name: test104
+  direction: Inbound
+  access: Allow
+  priority: 1104
+  protocol: Tcp
+  source_port_ranges: "*"
+  destination_port_ranges: "*"
+  destination_address_prefixes:
+    - 10.0.0.0/8
+    - 192.168.0.0/24
+  source_application_security_group_ids:
+    - /subscriptions/11111111-acb3-49d9-0000-cb82b5a5551d/resourceGroups/rg/providers/Microsoft.Network/applicationSecurityGroups/asg01
+- name: Test105 # ok
+  direction: Inbound
+  priority: 2105
+  protocol: Tcp
+  access: Allow
+  source_application_security_group_ids:
+    - /subscriptions/11111111-acb3-49d9-0000-cb82b5a5551d/resourceGroups/rg/providers/Microsoft.Network/applicationSecurityGroups/asg01
+  destination_service_tag: Storage.AustraliaEast

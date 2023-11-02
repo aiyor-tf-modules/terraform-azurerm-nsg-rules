@@ -1,0 +1,17 @@
+- name: Test401
+  access: Allow
+  direction: Inbound
+  priority: "1401"
+  protocol: Udp
+  source_address_prefixes: "*"
+  destination_service_tag: "Internet"
+- name: Test402 # ok
+  direction: Inbound
+  access: Allow
+  priority: "1402"
+  protocol: Tcp
+  destination_address_prefixes:
+    - 10.0.0.0/8
+    - 192.168.0.0/16
+    - 172.16.0.0/12
+  source_address_prefixes: ["*"]
