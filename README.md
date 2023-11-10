@@ -1,8 +1,8 @@
 # Terraform Module: nsg-rules
 
-This Terraform module provides a flexible ways to define and manage NSG rules in either `YAML`, `CSV`, or native Terraform variable formats.
+This Terraform module provides a flexible way to define and manage NSG rules in either `YAML`, `CSV`, or native Terraform variable formats.
 
-The module accepts any combinations of `YAML`, `CSV` and Terraform variable as input rules. The inputs from various sources will be merged for rules creation.
+The module accepts any combination of `YAML`, `CSV` and Terraform variable as input rules. The inputs from various sources will be merged for NSG rules creation.
 
 ## NSG Rules Specification
 
@@ -25,19 +25,19 @@ This module accepts the following specification for defining NSG rules:
 | destination_application_security_group_ids | List of destination ASG (list)                                      |
 | description                                | Description of the rule (string)                                    |
 
-When defining NSG rules input, it is important to note the following requirements:
+When defining NSG rules, it is important to note the following requirements:
 
-- `source_service_tag`, `source_address_prefixes`, and `source_application_security_group_ids` are mutually exclusive. Only one will be accepted. If none of them is defined, the NSG rule will assume destination to be `*`.
-- `destination_service_tag`, `destination_address_prefixes`, and `destination_application_security_group_ids` are mutually exclusive. Only one will be accepted. If none of them is defined, the NSG rule will assume destination to be `*`.
+- `source_service_tag`, `source_address_prefixes`, and `source_application_security_group_ids` are mutually exclusive. Only one will be accepted. If none of them is defined, the NSG rule will default to `*` as source.
+- `destination_service_tag`, `destination_address_prefixes`, and `destination_application_security_group_ids` are mutually exclusive. Only one will be accepted. If none of them is defined, the NSG rule will default to `*` as destination.
 - If `source_port_ranges` is undefined, the NSG rule will default to `*` (Any).
 - If `destination_port_ranges` is undefined, the NSG rule will default `*` (Any).
 - If `protocol` is undefined, the NSG rule will default to `*` (Any).
 
-**Note:** For `YAML` and `CSV` inputs, optional fields can be omitted in the schema/definition. The module will take care of any optional fields as per the above requirements.
+**Note:** For `YAML` and `CSV` inputs, the optional fields can be omitted in the schema/definition. The module will take care of any optional fields as per the above requirements.
 
 ## Examples
 
-Refer to the sub-directory `examples` within this repository for some example usage of the module parameters.
+Refer to the sub-directory `examples` within this repository for example usage of the module parameters.
 
 ### Using only Terraform Input Variable
 
@@ -84,9 +84,9 @@ module "simple_nsg" {
 
 ### Using YAML Configuration
 
-This module accept an optional variable, `yaml_conf_dir`, for users to define NSG rules in `YAML` files. It follows the concept of Linux `*.d` directories, where users can create multiple `YAML` files under the config directory to define NSG rules. The module will merge/join all the configuration defined in `YAML` under the `yaml_conf_dir` directory, and process them into Terraform 'variables'.
+This module accepts an optional variable, `yaml_conf_dir`, for users to define NSG rules in `YAML` files. It follows the concept of Linux `*.d` directories, where users can create multiple `YAML` files under the config directory to define NSG rules. The module will merge/join all the configuration defined in `YAML` under the `yaml_conf_dir` directory, and process them into Terraform 'variables'.
 
-In this example, assume a directory `nsg_rules_dir` exist in the root module. Users can then create various `YAML` files under the directory.
+In this example, assume a directory `nsg_rules_dir` exists in the root module. Users can then create various `YAML` files under the directory. The module will look for all files with either `.yaml` or `.yml` extension within the directory (including sub-directories).
 
 In the file `nsg_rules_dir/rules01.yml`:
 
