@@ -19,12 +19,6 @@ variable "resource_group_name" {
   type        = string
 }
 
-variable "location" {
-  description = "Azure Region name"
-  type        = string
-  default     = "Australia East"
-}
-
 variable "network_security_group_name" {
   description = "Azure Network Security Group name"
   type        = string
